@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-// Função para criar uma denúncia
 const createDenuncia = async (denuncia) => {
     try {
-        console.log("Enviando dados:", denuncia);  // Logs os dados que estão sendo enviados
+        console.log("Enviando dados:", denuncia);
         const response = await fetch('http://localhost:8080/api/denuncias', {
             method: 'POST',
             headers: {
@@ -12,11 +11,11 @@ const createDenuncia = async (denuncia) => {
             body: JSON.stringify(denuncia),
         });
 
-        console.log("Status da resposta:", response.status); // Verifica o código de status da resposta
+        console.log("Status da resposta:", response.status);
 
         if (!response.ok) {
-            const errorText = await response.text();  // Captura o erro
-            console.error("Erro de resposta:", errorText);  // Exibe o erro
+            const errorText = await response.text();
+            console.error("Erro de resposta:", errorText);
             throw new Error(errorText);
         }
 
@@ -39,10 +38,8 @@ const DenunciaForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Limpar qualquer erro anterior
         setErro('');
 
-        // Objeto com os dados do formulário
         const denuncia = {
             titulo,
             descricao,
@@ -52,10 +49,8 @@ const DenunciaForm = () => {
         };
 
         try {
-            // Chama a função createDenuncia e espera a resposta
             await createDenuncia(denuncia);
 
-            // Limpar os campos após enviar
             setTitulo('');
             setDescricao('');
             setLocalizacao('');
@@ -64,7 +59,6 @@ const DenunciaForm = () => {
             
             alert("Denúncia enviada com sucesso!");
         } catch (error) {
-            // Exibe o erro se houver falha
             setErro('Erro ao enviar a denúncia: ' + error.message);
         }
     };

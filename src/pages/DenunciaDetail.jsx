@@ -1,4 +1,3 @@
-// src/pages/DenunciaDetail.jsx
 import React, { useEffect, useState } from 'react';
 import { fetchDenunciaById } from '../api/api';
 import { useParams } from 'react-router-dom';

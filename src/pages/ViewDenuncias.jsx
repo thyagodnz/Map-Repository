@@ -1,4 +1,3 @@
-// src/pages/ViewDenuncias.jsx
 import React, { useEffect, useState } from 'react';
 import { fetchDenuncias, deleteDenuncia } from '../api/api';
 import { Link } from 'react-router-dom';
